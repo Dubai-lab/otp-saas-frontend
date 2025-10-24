@@ -1,0 +1,27 @@
+.testotp-container {
+  padding: 20px;
+}
+
+.testotp-form {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  width: 550px;
+}
+
+.testotp-form select,
+.testotp-form input {
+  width: 260px;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+}
+
+.testotp-form button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}

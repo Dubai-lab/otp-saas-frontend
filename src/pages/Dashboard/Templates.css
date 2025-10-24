@@ -1,0 +1,101 @@
+.templates-container {
+  padding: 20px;
+}
+
+.template-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 400px;
+  margin-bottom: 24px;
+}
+
+.template-form input,
+.template-form textarea {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #cccccc;
+}
+
+.template-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.template-form button {
+  padding: 12px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.template-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.template-item {
+  background: white;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actions button {
+  padding: 6px 10px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-left: 8px;
+}
+
+.actions .edit {
+  background: #2563eb;
+}
+
+.actions .delete {
+  background: #dc2626;
+}
+
+.style-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.style-section input[type="color"] {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.style-section select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.email-preview {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  background: #f9f9f9;
+  margin-bottom: 24px;
+  max-width: 600px;
+}
+
+.preview-header,
+.preview-body,
+.preview-footer {
+  border-radius: 4px;
+}

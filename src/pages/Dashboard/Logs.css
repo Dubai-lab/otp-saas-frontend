@@ -1,0 +1,46 @@
+.logs-container {
+  padding: 20px;
+}
+
+.logs-table-wrap {
+  overflow-x: auto;
+}
+
+.logs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.logs-table th,
+.logs-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.logs-table th {
+  background: #e5e7eb;
+  text-align: left;
+}
+
+.status {
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status.sent {
+  background: #d1fae5;
+  color: #059669;
+}
+
+.status.pending {
+  background: #fef9c3;
+  color: #b45309;
+}
+
+.status.failed {
+  background: #fee2e2;
+  color: #dc2626;
+}

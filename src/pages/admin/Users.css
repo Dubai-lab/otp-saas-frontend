@@ -1,0 +1,28 @@
+.admin-users {
+  padding: 20px;
+}
+
+.admin-users table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.admin-users th,
+.admin-users td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.role.admin {
+  color: #0369a1;
+  font-weight: bold;
+}
+
+.role.user {
+  color: #2563eb;
+}
+
+select {
+  padding: 5px;
+}

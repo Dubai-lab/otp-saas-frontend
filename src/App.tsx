@@ -58,7 +58,7 @@ export default function App() {
 
         {/* Dashboard (Protected) */}
         <Route
-          path="/dashboard"
+          path="/dashboard/home"
           element={
             <PrivateRoute>
               <DashboardLayout>
@@ -66,6 +66,11 @@ export default function App() {
               </DashboardLayout>
             </PrivateRoute>
           }
+        />
+
+        <Route
+          path="/dashboard"
+          element={<Navigate to="/dashboard/home" replace />}
         />
 
         <Route

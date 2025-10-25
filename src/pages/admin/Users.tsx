@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "../../api/axios";
 import toast from "react-hot-toast";
 import Loader from "../../components/UI/Loader";
+import { useAuth } from "../../context/AuthContext";
 
 interface User {
   id: string;
@@ -12,6 +13,7 @@ interface User {
 }
 
 export default function Users() {
+  const { user, refreshUser } = useAuth();
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const token = localStorage.getItem("token");
@@ -44,6 +46,10 @@ export default function Users() {
       );
       toast.success("Role updated ✅");
       void fetchUsers();
+      // Refresh user context to update current user's role if they changed their own role
+      if (id === user?.id) {
+        await refreshUser();
+      }
     } catch {
       toast.error("Failed to update role ❌");
     }

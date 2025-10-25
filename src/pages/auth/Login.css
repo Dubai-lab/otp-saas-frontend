@@ -120,6 +120,16 @@
   text-decoration: underline;
 }
 
+.forgot-password-link {
+  color: #6b7280 !important;
+  font-size: 14px;
+}
+
+.forgot-password-link:hover {
+  color: #2563eb !important;
+  text-decoration: underline;
+}
+
 /* Features Section */
 .auth-features-section {
   flex: 1;

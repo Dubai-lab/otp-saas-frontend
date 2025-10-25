@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Welcome from "./pages/Welcome";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
+import ForgotPassword from "./pages/auth/ForgotPassword";
 import DashboardLayout from "./layouts/DashboardLayout";
 import PrivateRoute from "./routes/PrivateRoute";
 import Home from "./pages/Dashboard/Home";
@@ -13,7 +14,10 @@ import Logs from "./pages/Dashboard/Logs";
 import AdminRoute from "./routes/AdminRoute";
 import Users from "./pages/admin/Users";
 import AdminLogs from "./pages/admin/AdminLogs";
-// Dropdown pages
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminSMTP from "./pages/admin/AdminSMTP";
+import AdminApiKeys from "./pages/admin/AdminApiKeys";
+import AdminTemplates from "./pages/admin/AdminTemplates";
 import Features from "./pages/dropdown/product/Features";
 import Integration from "./pages/dropdown/product/Integration";
 import Pricing from "./pages/dropdown/product/Pricing";
@@ -33,23 +37,24 @@ export default function App() {
         <Route path="/" element={<Welcome />} />
 
         {/* Product Pages */}
-        <Route path="/product/features" element={<Features />} />
-        <Route path="/product/integration" element={<Integration />} />
-        <Route path="/product/pricing" element={<Pricing />} />
+        <Route path="/features" element={<Features />} />
+        <Route path="/integration" element={<Integration />} />
+        <Route path="/pricing" element={<Pricing />} />
 
         {/* Company Pages */}
-        <Route path="/company/about" element={<About />} />
-        <Route path="/company/blog" element={<Blog />} />
-        <Route path="/company/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/contact" element={<Contact />} />
 
         {/* Support Pages */}
-        <Route path="/support/documentation" element={<Documentation />} />
-        <Route path="/support/api-reference" element={<ApiReference />} />
-        <Route path="/support/help-center" element={<HelpCenter />} />
+        <Route path="/documentation" element={<Documentation />} />
+        <Route path="/api-reference" element={<ApiReference />} />
+        <Route path="/help-center" element={<HelpCenter />} />
 
         {/* Auth Pages */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
 
         {/* Dashboard (Protected) */}
         <Route
@@ -139,6 +144,73 @@ export default function App() {
     </AdminRoute>
   }
 />
+
+        {/* Admin Routes */}
+        <Route
+          path="/admin/dashboard"
+          element={
+            <AdminRoute>
+              <DashboardLayout>
+                <AdminDashboard />
+              </DashboardLayout>
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="/admin/users"
+          element={
+            <AdminRoute>
+              <DashboardLayout>
+                <Users />
+              </DashboardLayout>
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="/admin/smtp"
+          element={
+            <AdminRoute>
+              <DashboardLayout>
+                <AdminSMTP />
+              </DashboardLayout>
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="/admin/apikeys"
+          element={
+            <AdminRoute>
+              <DashboardLayout>
+                <AdminApiKeys />
+              </DashboardLayout>
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="/admin/templates"
+          element={
+            <AdminRoute>
+              <DashboardLayout>
+                <AdminTemplates />
+              </DashboardLayout>
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="/admin/logs"
+          element={
+            <AdminRoute>
+              <DashboardLayout>
+                <AdminLogs />
+              </DashboardLayout>
+            </AdminRoute>
+          }
+        />
 
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>

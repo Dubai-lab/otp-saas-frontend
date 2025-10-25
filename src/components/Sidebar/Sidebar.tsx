@@ -34,6 +34,16 @@ export default function Sidebar() {
         <div className="sidebar-user">
           <strong>{user?.fullName}</strong>
           <small>{user?.email}</small>
+          <hr className="user-separator" />
+          <button
+            className="logout-btn-top"
+            onClick={() => {
+              localStorage.removeItem("token");
+              window.location.href = "/login";
+            }}
+          >
+            Logout
+          </button>
         </div>
 
         <nav className="sidebar-nav">
@@ -47,21 +57,15 @@ export default function Sidebar() {
           {user?.role === "admin" && (
             <>
               <hr />
-              <Link to="/dashboard/admin/users" onClick={() => setIsOpen(false)}>Manage Users</Link>
-              <Link to="/dashboard/admin/logs" onClick={() => setIsOpen(false)}>Admin Logs</Link>
+              <Link to="/admin/dashboard" onClick={() => setIsOpen(false)}>📊 Admin Dashboard</Link>
+              <Link to="/admin/users" onClick={() => setIsOpen(false)}>👥 Manage Users</Link>
+              <Link to="/admin/smtp" onClick={() => setIsOpen(false)}>📧 SMTP Configs</Link>
+              <Link to="/admin/apikeys" onClick={() => setIsOpen(false)}>🔑 API Keys</Link>
+              <Link to="/admin/templates" onClick={() => setIsOpen(false)}>📄 Templates</Link>
+              <Link to="/admin/logs" onClick={() => setIsOpen(false)}>📋 System Logs</Link>
             </>
           )}
         </nav>
-
-        <button
-          className="logout-btn"
-          onClick={() => {
-            localStorage.removeItem("token");
-            window.location.href = "/login";
-          }}
-        >
-          Logout
-        </button>
       </aside>
     </>
   );

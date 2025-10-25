@@ -1,12 +1,11 @@
 import "./Login.css";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "../../api/axios";
 import toast from "react-hot-toast";
 import Loader from "../../components/UI/Loader";
 
 export default function Login() {
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -23,7 +22,8 @@ export default function Login() {
 
       localStorage.setItem("token", res.data.accessToken);
       toast.success("Login successful ✅");
-      setTimeout(() => navigate("/dashboard"), 800);
+      // Force a page reload to refresh the user context with the new token
+      window.location.href = "/dashboard";
     } catch (err: unknown) {
       const error = err as { response?: { data?: { message?: string } } };
       toast.error(error.response?.data?.message || "Login failed ❌");
@@ -73,6 +73,9 @@ export default function Login() {
               <button type="submit" className="auth-btn">Sign In</button>
 
               <div className="auth-footer">
+                <p>
+                  <Link to="/forgot-password" className="forgot-password-link">Forgot password?</Link>
+                </p>
                 <p>
                   Don’t have an account?{" "}
                   <Link to="/register">Create one</Link>

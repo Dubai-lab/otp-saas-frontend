@@ -12,4 +12,24 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+// Log failed responses consistently
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const method = error.config?.method?.toUpperCase() || 'UNKNOWN';
+    const url = error.config?.url || 'UNKNOWN_URL';
+    const status = error.response?.status;
+    const message =
+      error.response?.data?.message ||
+      error.response?.data?.error ||
+      error.message ||
+      'Request failed';
+
+    // Keep logging concise but useful
+    // eslint-disable-next-line no-console
+    console.error(`[API] ${method} ${url} -> ${status ?? 'NO_STATUS'}: ${message}`);
+    return Promise.reject(error);
+  }
+);
+
 export default api;

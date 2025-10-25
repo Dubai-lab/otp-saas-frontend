@@ -23,20 +23,14 @@ export default function AdminApiKeys() {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    fetchApiKeys();
+    void fetchApiKeys();
   }, []);
 
   const fetchApiKeys = async () => {
     try {
-      const response = await fetch('/api/admin/apikeys', {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setApiKeys(data);
-      }
+      const axios = (await import("../../api/axios")).default;
+      const { data } = await axios.get<ApiKey[]>("/admin/apikeys");
+      setApiKeys(data);
     } catch (error) {
       console.error('Failed to fetch API keys:', error);
     } finally {
@@ -50,16 +44,10 @@ export default function AdminApiKeys() {
     }
 
     try {
-      const response = await fetch(`/api/admin/apikeys/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      if (response.ok) {
-        setApiKeys(apiKeys.filter(key => key.id !== id));
-        alert('API key deleted successfully');
-      }
+      const axios = (await import("../../api/axios")).default;
+      await axios.delete(`/admin/apikeys/${id}`);
+      setApiKeys(apiKeys.filter(key => key.id !== id));
+      alert('API key deleted successfully');
     } catch (error) {
       console.error('Failed to delete API key:', error);
       alert('Failed to delete API key');

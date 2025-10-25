@@ -37,19 +37,19 @@ export default function App() {
         <Route path="/" element={<Welcome />} />
 
         {/* Product Pages */}
-        <Route path="/features" element={<Features />} />
-        <Route path="/integration" element={<Integration />} />
-        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/product/features" element={<Features />} />
+        <Route path="/product/integration" element={<Integration />} />
+        <Route path="/product/pricing" element={<Pricing />} />
 
         {/* Company Pages */}
-        <Route path="/about" element={<About />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/company/about" element={<About />} />
+        <Route path="/company/blog" element={<Blog />} />
+        <Route path="/company/contact" element={<Contact />} />
 
         {/* Support Pages */}
-        <Route path="/documentation" element={<Documentation />} />
-        <Route path="/api-reference" element={<ApiReference />} />
-        <Route path="/help-center" element={<HelpCenter />} />
+        <Route path="/support/documentation" element={<Documentation />} />
+        <Route path="/support/api-reference" element={<ApiReference />} />
+        <Route path="/support/help-center" element={<HelpCenter />} />
 
         {/* Auth Pages */}
         <Route path="/login" element={<Login />} />

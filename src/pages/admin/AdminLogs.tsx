@@ -21,27 +21,26 @@ interface LogEntry {
 export default function AdminLogs() {
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [typeFilter, setTypeFilter] = useState<string>("all");
 
   useEffect(() => {
-    fetchLogs();
+    void fetchLogs();
   }, []);
 
   const fetchLogs = async () => {
     try {
-      const response = await fetch('/api/admin/otp-logs', {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setLogs(data);
-      }
-    } catch (error) {
-      console.error('Failed to fetch logs:', error);
+      setError(null);
+      const axios = (await import("../../api/axios")).default;
+      const { data } = await axios.get<unknown>("/admin/otp-logs");
+      const list = Array.isArray(data) ? (data as LogEntry[]) : [];
+      setLogs(list);
+    } catch (err) { 
+      const message = typeof err === 'object' && err !== null && 'message' in err ? 
+      String((err as { message?: unknown }).message ?? 'Failed to fetch logs') : 'Failed to fetch logs'; 
+      console.error('Failed to fetch logs:', err); setError(message); setLogs([]); 
     } finally {
       setLoading(false);
     }
@@ -68,10 +67,13 @@ export default function AdminLogs() {
   };
 
   const filteredLogs = logs.filter(log => {
-    const matchesSearch = log.recipient.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         log.user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         log.subject.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         log.provider.toLowerCase().includes(searchTerm.toLowerCase());
+    const recipient = (log.recipient || '').toLowerCase();
+    const userEmail = (log.user?.email || '').toLowerCase();
+    const subject = (log.subject || '').toLowerCase();
+    const provider = (log.provider || '').toLowerCase();
+
+    const q = searchTerm.toLowerCase();
+    const matchesSearch = recipient.includes(q) || userEmail.includes(q) || subject.includes(q) || provider.includes(q);
 
     const matchesStatus = statusFilter === 'all' || log.status === statusFilter;
     const matchesType = typeFilter === 'all' || log.type === typeFilter;
@@ -83,6 +85,14 @@ export default function AdminLogs() {
     return (
       <div className="admin-logs">
         <div className="loading">Loading system logs...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="admin-logs">
+        <div className="loading">{error}</div>
       </div>
     );
   }
@@ -164,8 +174,8 @@ export default function AdminLogs() {
 
               <div className="col-user">
                 <div className="user-info">
-                  <div className="user-email">{log.user.email}</div>
-                  <div className="user-name">{log.user.fullName}</div>
+                  <div className="user-email">{log.user?.email || '-'}</div>
+                  <div className="user-name">{log.user?.fullName || '-'}</div>
                 </div>
               </div>
 
@@ -181,7 +191,7 @@ export default function AdminLogs() {
 
               <div className="col-status">
                 <span
-                  className="status-badge"
+                  className={"status-badge"}
                   style={{ backgroundColor: getStatusColor(log.status) }}
                 >
                   {getStatusIcon(log.status)} {log.status}

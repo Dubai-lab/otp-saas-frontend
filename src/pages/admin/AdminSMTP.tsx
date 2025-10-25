@@ -22,20 +22,14 @@ export default function AdminSMTP() {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    fetchConfigs();
+    void fetchConfigs();
   }, []);
 
   const fetchConfigs = async () => {
     try {
-      const response = await fetch('/api/admin/smtp', {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setConfigs(data);
-      }
+      const axios = (await import("../../api/axios")).default;
+      const { data } = await axios.get<SMTPConfig[]>("/admin/smtp");
+      setConfigs(data);
     } catch (error) {
       console.error('Failed to fetch SMTP configs:', error);
     } finally {
@@ -49,16 +43,10 @@ export default function AdminSMTP() {
     }
 
     try {
-      const response = await fetch(`/api/admin/smtp/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      if (response.ok) {
-        setConfigs(configs.filter(config => config.id !== id));
-        alert('SMTP config deleted successfully');
-      }
+      const axios = (await import("../../api/axios")).default;
+      await axios.delete(`/admin/smtp/${id}`);
+      setConfigs(configs.filter(config => config.id !== id));
+      alert('SMTP config deleted successfully');
     } catch (error) {
       console.error('Failed to delete SMTP config:', error);
       alert('Failed to delete SMTP config');

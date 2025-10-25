@@ -24,20 +24,14 @@ export default function AdminTemplates() {
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
 
   useEffect(() => {
-    fetchTemplates();
+    void fetchTemplates();
   }, []);
 
   const fetchTemplates = async () => {
     try {
-      const response = await fetch('/api/admin/templates', {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setTemplates(data);
-      }
+      const axios = (await import("../../api/axios")).default;
+      const { data } = await axios.get<Template[]>("/admin/templates");
+      setTemplates(data);
     } catch (error) {
       console.error('Failed to fetch templates:', error);
     } finally {
@@ -51,16 +45,10 @@ export default function AdminTemplates() {
     }
 
     try {
-      const response = await fetch(`/api/admin/template/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      if (response.ok) {
-        setTemplates(templates.filter(template => template.id !== id));
-        alert('Template deleted successfully');
-      }
+      const axios = (await import("../../api/axios")).default;
+      await axios.delete(`/admin/templates/${id}`);
+      setTemplates(templates.filter(template => template.id !== id));
+      alert('Template deleted successfully');
     } catch (error) {
       console.error('Failed to delete template:', error);
       alert('Failed to delete template');

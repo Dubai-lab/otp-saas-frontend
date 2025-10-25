@@ -16,22 +16,15 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchStats();
+    void fetchStats();
   }, []);
 
   const fetchStats = async () => {
     try {
-      const response = await fetch('/admin/stats', {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setStats(data);
-      }
+      const { data } = await (await import("../../api/axios")).default.get<SystemStats>("/admin/stats");
+      setStats(data);
     } catch (error) {
-      console.error('Failed to fetch stats:', error);
+      console.error("Failed to fetch stats:", error);
     } finally {
       setLoading(false);
     }
@@ -43,16 +36,10 @@ export default function AdminDashboard() {
     }
 
     try {
-      const response = await fetch('/admin/cleanup', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      if (response.ok) {
-        alert('Cleanup completed successfully');
-        fetchStats(); // Refresh stats
-      }
+      const axios = (await import("../../api/axios")).default;
+      await axios.post('/admin/cleanup');
+      alert('Cleanup completed successfully');
+      void fetchStats(); // Refresh stats
     } catch (error) {
       console.error('Cleanup failed:', error);
       alert('Cleanup failed');

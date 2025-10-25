@@ -23,7 +23,7 @@ export default function Login() {
       localStorage.setItem("token", res.data.accessToken);
       toast.success("Login successful ✅");
       // Force a page reload to refresh the user context with the new token
-      window.location.href = "pages/Dashboard/Home.tsx";
+      window.location.href = "/dashboard";
     } catch (err: unknown) {
       const error = err as { response?: { data?: { message?: string } } };
       toast.error(error.response?.data?.message || "Login failed ❌");

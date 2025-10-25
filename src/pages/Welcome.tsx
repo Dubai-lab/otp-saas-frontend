@@ -64,9 +64,9 @@ export default function Welcome() {
                 Products ▼
               </button>
               <div className={`dropdown-menu ${dropdownOpen === 'products' ? 'show' : ''}`}>
-                <Link to="/features" className="dropdown-item" onClick={closeMobileMenu}>Features</Link>
-                <Link to="/integration" className="dropdown-item" onClick={closeMobileMenu}>Integration</Link>
-                <Link to="/pricing" className="dropdown-item" onClick={closeMobileMenu}>Pricing</Link>
+                <Link to="/product/features" className="dropdown-item" onClick={closeMobileMenu}>Features</Link>
+                <Link to="/product/integration" className="dropdown-item" onClick={closeMobileMenu}>Integration</Link>
+                <Link to="/product/pricing" className="dropdown-item" onClick={closeMobileMenu}>Pricing</Link>
               </div>
             </div>
             <div className="dropdown" onMouseLeave={closeDropdown}>
@@ -78,9 +78,9 @@ export default function Welcome() {
                 Support ▼
               </button>
               <div className={`dropdown-menu ${dropdownOpen === 'support' ? 'show' : ''}`}>
-                <Link to="/documentation" className="dropdown-item" onClick={closeMobileMenu}>Documentation</Link>
-                <Link to="/api-reference" className="dropdown-item" onClick={closeMobileMenu}>API Reference</Link>
-                <Link to="/help-center" className="dropdown-item" onClick={closeMobileMenu}>Help Center</Link>
+                <Link to="/support/documentation" className="dropdown-item" onClick={closeMobileMenu}>Documentation</Link>
+                <Link to="/support/api-reference" className="dropdown-item" onClick={closeMobileMenu}>API Reference</Link>
+                <Link to="/support/help-center" className="dropdown-item" onClick={closeMobileMenu}>Help Center</Link>
               </div>
             </div>
             <div className="dropdown" onMouseLeave={closeDropdown}>
@@ -92,9 +92,9 @@ export default function Welcome() {
                 Company ▼
               </button>
               <div className={`dropdown-menu ${dropdownOpen === 'company' ? 'show' : ''}`}>
-                <Link to="/about" className="dropdown-item" onClick={closeMobileMenu}>About</Link>
-                <Link to="/blog" className="dropdown-item" onClick={closeMobileMenu}>Blog</Link>
-                <Link to="/contact" className="dropdown-item" onClick={closeMobileMenu}>Contact</Link>
+                <Link to="/company/about" className="dropdown-item" onClick={closeMobileMenu}>About</Link>
+                <Link to="/company/blog" className="dropdown-item" onClick={closeMobileMenu}>Blog</Link>
+                <Link to="/company/contact" className="dropdown-item" onClick={closeMobileMenu}>Contact</Link>
               </div>
             </div>
             <div className="nav-links">
@@ -290,21 +290,21 @@ curl -X POST /api/otp/verify \\
             <div className="footer-links">
               <div className="footer-column">
                 <h4>Product</h4>
-                <Link to="/features">Features</Link>
-                <Link to="/integration">Integration</Link>
-                <Link to="/pricing">Pricing</Link>
+                <Link to="/product/features">Features</Link>
+                <Link to="/product/integration">Integration</Link>
+                <Link to="/product/pricing">Pricing</Link>
               </div>
               <div className="footer-column">
                 <h4>Support</h4>
-                <Link to="/documentation">Documentation</Link>
-                <Link to="/api-reference">API Reference</Link>
-                <Link to="/help-center">Help Center</Link>
+                <Link to="/support/documentation">Documentation</Link>
+                <Link to="/support/api-reference">API Reference</Link>
+                <Link to="/support/help-center">Help Center</Link>
               </div>
               <div className="footer-column">
                 <h4>Company</h4>
-                <Link to="/about">About</Link>
-                <Link to="/blog">Blog</Link>
-                <Link to="/contact">Contact</Link>
+                <Link to="/company/about">About</Link>
+                <Link to="/company/blog">Blog</Link>
+                <Link to="/company/contact">Contact</Link>
               </div>
             </div>
           </div>

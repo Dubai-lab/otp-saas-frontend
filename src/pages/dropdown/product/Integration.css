@@ -1,0 +1,538 @@
+.integration-page {
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.page-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 80px 20px 60px;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.page-header p {
+  font-size: 20px;
+  margin-bottom: 40px;
+  opacity: 0.9;
+}
+
+.page-header .btn-primary {
+  padding: 16px 32px;
+  background: white;
+  color: #2563eb;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  display: inline-block;
+  transition: all 0.2s;
+}
+
+.page-header .btn-primary:hover {
+  background: #f3f4f6;
+  transform: translateY(-1px);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.quick-start {
+  padding: 80px 0;
+  text-align: center;
+}
+
+.quick-start h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 60px;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.step-number {
+  width: 60px;
+  height: 60px;
+  background: #2563eb;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.step-content h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 12px;
+}
+
+.step-content p {
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.api-examples {
+  padding: 80px 0;
+  background: #f9fafb;
+  border-radius: 12px;
+  margin: 60px 0;
+}
+
+.api-examples h2 {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+.api-examples > p {
+  text-align: center;
+  font-size: 18px;
+  color: #6b7280;
+  margin-bottom: 60px;
+}
+
+.code-tabs {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.tab-buttons {
+  display: flex;
+  background: #f3f4f6;
+  border-bottom: 1px solid #e5e7eb;
+  overflow-x: auto;
+}
+
+.tab-btn {
+  flex: 1;
+  min-width: 120px;
+  padding: 16px 24px;
+  background: none;
+  border: none;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.tab-btn.active {
+  background: #ffffff;
+  color: #2563eb;
+  border-bottom: 2px solid #2563eb;
+}
+
+.code-content {
+  position: relative;
+}
+
+.code-block {
+  display: none;
+  padding: 0;
+}
+
+.code-block.active {
+  display: block;
+}
+
+.code-header {
+  background: #f8fafc;
+  padding: 16px 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.code-header h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.code-block pre {
+  margin: 0;
+  padding: 24px;
+  background: #1f2937;
+  color: #e5e7eb;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.code-block code {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}
+
+.sdks {
+  padding: 80px 0;
+  text-align: center;
+}
+
+.sdks h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+.sdks > p {
+  font-size: 18px;
+  color: #6b7280;
+  margin-bottom: 60px;
+}
+
+.sdk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.sdk-card {
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s;
+}
+
+.sdk-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.sdk-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.sdk-card h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 12px;
+}
+
+.sdk-card p {
+  color: #6b7280;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.sdk-card code {
+  display: block;
+  background: #f3f4f6;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 16px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}
+
+.sdk-link {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.sdk-link:hover {
+  text-decoration: underline;
+}
+
+.testing {
+  padding: 80px 0;
+  background: #f9fafb;
+  border-radius: 12px;
+  margin: 60px 0;
+}
+
+.testing h2 {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+.testing > p {
+  text-align: center;
+  font-size: 18px;
+  color: #6b7280;
+  margin-bottom: 60px;
+}
+
+.testing-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 40px;
+}
+
+.testing-card {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.testing-card h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+.testing-card p {
+  color: #6b7280;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.testing-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.testing-card li {
+  padding: 8px 0;
+  color: #4b5563;
+}
+
+.testing-card code {
+  background: #f3f4f6;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+}
+
+.support {
+  padding: 80px 0;
+  text-align: center;
+}
+
+.support h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+.support > p {
+  font-size: 18px;
+  color: #6b7280;
+  margin-bottom: 60px;
+}
+
+.support-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.support-link {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s;
+}
+
+.support-link:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.support-link .icon {
+  font-size: 32px;
+}
+
+.support-link h4 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+.support-link p {
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .page-header {
+    padding: 60px 20px 40px;
+  }
+
+  .page-header h1 {
+    font-size: 32px;
+  }
+
+  .page-header p {
+    font-size: 18px;
+  }
+
+  .quick-start {
+    padding: 60px 0;
+  }
+
+  .quick-start h2 {
+    font-size: 28px;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .api-examples {
+    padding: 60px 20px;
+    margin: 40px 0;
+  }
+
+  .api-examples h2 {
+    font-size: 28px;
+  }
+
+  .tab-buttons {
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    flex: 1 1 50%;
+    min-width: 100px;
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  .code-block pre {
+    padding: 16px;
+    font-size: 12px;
+  }
+
+  .sdks {
+    padding: 60px 0;
+  }
+
+  .sdks h2 {
+    font-size: 28px;
+  }
+
+  .sdk-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .testing {
+    padding: 60px 20px;
+    margin: 40px 0;
+  }
+
+  .testing h2 {
+    font-size: 28px;
+  }
+
+  .testing-info {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .support {
+    padding: 60px 0;
+  }
+
+  .support h2 {
+    font-size: 28px;
+  }
+
+  .support-options {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .support-link {
+    padding: 20px;
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header h1 {
+    font-size: 28px;
+  }
+
+  .quick-start h2,
+  .api-examples h2,
+  .sdks h2,
+  .testing h2,
+  .support h2 {
+    font-size: 24px;
+  }
+
+  .step-content h3 {
+    font-size: 20px;
+  }
+
+  .sdk-card h3 {
+    font-size: 20px;
+  }
+
+  .testing-card h3 {
+    font-size: 20px;
+  }
+
+  .tab-btn {
+    padding: 10px 12px;
+    font-size: 12px;
+    min-width: 80px;
+  }
+
+  .code-block pre {
+    font-size: 11px;
+    padding: 12px;
+  }
+
+  .support-link h4 {
+    font-size: 18px;
+  }
+}

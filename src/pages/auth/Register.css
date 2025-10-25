@@ -1,1 +1,4 @@
+/* Import shared styles from Login.css */
 @import "./Login.css";
+
+/* Additional styles specific to Register page if needed */

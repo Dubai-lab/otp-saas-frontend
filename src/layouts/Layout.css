@@ -9,3 +9,17 @@
   min-height: 100vh;
   background: #f1f5f9;
 }
+
+/* Mobile Layout */
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .layout-content {
+    margin-left: 0;
+    width: 100%;
+    padding: 15px;
+    padding-top: 60px; /* Add top padding to account for mobile menu button */
+  }
+}

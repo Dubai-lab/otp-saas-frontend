@@ -62,3 +62,56 @@
 .test-btn:hover {
   background: #1d4ed8;
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 15px;
+  }
+
+  .dashboard h2 {
+    font-size: 20px;
+  }
+
+  .dashboard p {
+    font-size: 14px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .card h3 {
+    font-size: 16px;
+  }
+
+  .card p {
+    font-size: 22px;
+  }
+
+  .test-btn {
+    width: 100%;
+    text-align: center;
+    padding: 14px 18px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard h2 {
+    font-size: 18px;
+  }
+
+  .card h3 {
+    font-size: 14px;
+  }
+
+  .card p {
+    font-size: 20px;
+  }
+}

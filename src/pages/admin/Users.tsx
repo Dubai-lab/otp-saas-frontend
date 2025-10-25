@@ -20,6 +20,7 @@ export default function Users() {
 
   useEffect(() => {
     void fetchUsers();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchUsers = async () => {

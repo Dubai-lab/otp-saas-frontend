@@ -1,15 +1,16 @@
 import { Navigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import Loader from "../components/UI/Loader";
 import type { JSX } from "react";
 
 export default function PrivateRoute({ children }: { children: JSX.Element }) {
-  const token = localStorage.getItem("token");
+  const { user } = useAuth();
 
-  if (token === null) {
+  if (user === null) {
     return <Navigate to="/login" replace />;
   }
 
-  if (!token) return <Loader />;
+  if (user === undefined) return <Loader />;
 
   return children;
 }

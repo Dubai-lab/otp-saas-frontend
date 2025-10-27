@@ -32,7 +32,7 @@ export default function SMTP() {
     try {
       setLoading(true);
       const res = await axios.get("/smtp");
-      setConfigs(res.data || []);
+      setConfigs(res.data);
     } catch {
       toast.error("Failed to load configs ❌");
     } finally {

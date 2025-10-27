@@ -20,7 +20,7 @@ export default function Home() {
     try {
       const res = await axios.get("/logs/stats");
 
-      setStats(res.data || { smtpCount: 0, templateCount: 0, apiKeyCount: 0, sentToday: 0, failedCount: 0 });
+      setStats(res.data);
     } catch (err) {
       console.error("Stats fetch failed", err);
     }

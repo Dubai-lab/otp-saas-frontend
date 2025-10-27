@@ -30,7 +30,7 @@ export default function AdminApiKeys() {
     try {
       const axios = (await import("../../api/axios")).default;
       const { data } = await axios.get<ApiKey[]>("/admin/apikeys");
-      setApiKeys(data || []);
+      setApiKeys(data);
     } catch (error) {
       console.error('Failed to fetch API keys:', error);
     } finally {

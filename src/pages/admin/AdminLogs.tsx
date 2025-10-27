@@ -34,13 +34,12 @@ export default function AdminLogs() {
     try {
       setError(null);
       const axios = (await import("../../api/axios")).default;
-      const { data } = await axios.get<unknown>("/admin/otp-logs");
-      const list = Array.isArray(data) ? (data as LogEntry[]) : [];
-      setLogs(list);
-    } catch (err) { 
-      const message = typeof err === 'object' && err !== null && 'message' in err ? 
-      String((err as { message?: unknown }).message ?? 'Failed to fetch logs') : 'Failed to fetch logs'; 
-      console.error('Failed to fetch logs:', err); setError(message); setLogs([]); 
+      const { data } = await axios.get<LogEntry[]>("/admin/otp-logs");
+      setLogs(data);
+    } catch (err) {
+      console.error('Failed to fetch logs:', err);
+      setError('Failed to fetch logs');
+      setLogs([]);
     } finally {
       setLoading(false);
     }

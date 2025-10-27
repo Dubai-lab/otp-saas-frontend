@@ -38,8 +38,8 @@ export default function TestOtp() {
         axios.get("/templates"),
       ]);
 
-      setApiKeys(keyRes.data || []);
-      setTemplates(templateRes.data || []);
+      setApiKeys(keyRes.data);
+      setTemplates(templateRes.data);
     } catch {
       toast.error("Failed to load test settings ❌");
     } finally {
@@ -108,7 +108,6 @@ export default function TestOtp() {
         <select
           value={form.apiKeyId}
           onChange={(e) => setForm({ ...form, apiKeyId: e.target.value })}
-          aria-label="Select API Key"
         >
           <option value="">Select API Key</option>
           {apikeys.map((k) => (
@@ -121,7 +120,6 @@ export default function TestOtp() {
         <select
           value={form.templateName}
           onChange={(e) => setForm({ ...form, templateName: e.target.value })}
-          aria-label="Select Email Template"
         >
           <option value="">Select Template</option>
           {templates.map((t) => (

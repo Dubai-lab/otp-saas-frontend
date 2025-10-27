@@ -31,7 +31,7 @@ export default function AdminTemplates() {
     try {
       const axios = (await import("../../api/axios")).default;
       const { data } = await axios.get<Template[]>("/admin/templates");
-      setTemplates(data || []);
+      setTemplates(data);
     } catch (error) {
       console.error('Failed to fetch templates:', error);
     } finally {

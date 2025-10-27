@@ -37,8 +37,8 @@ export default function ApiKeys() {
         axios.get("/smtp"),
       ]);
 
-      setApiKeys(keysRes.data || []);
-      setConfigs(smtpRes.data || []);
+      setApiKeys(keysRes.data);
+      setConfigs(smtpRes.data);
     } catch {
       toast.error("Failed to load API Keys ❌");
     } finally {
@@ -85,7 +85,7 @@ export default function ApiKeys() {
 
       {/* Select SMTP */}
       <div className="generate-box">
-        <select value={smtpId} onChange={(e) => setSmtpId(e.target.value)} aria-label="Select SMTP Configuration">
+        <select value={smtpId} onChange={(e) => setSmtpId(e.target.value)}>
           <option value="">Select SMTP Config</option>
           {configs.map((c) => (
             <option key={c.id} value={c.id}>

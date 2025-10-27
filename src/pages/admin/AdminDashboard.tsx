@@ -22,7 +22,7 @@ export default function AdminDashboard() {
   const fetchStats = async () => {
     try {
       const { data } = await (await import("../../api/axios")).default.get<SystemStats>("/admin/stats");
-      setStats(data || { users: 0, smtpConfigs: 0, apiKeys: 0, templates: 0, totalLogs: 0, sentToday: 0, failedCount: 0 });
+      setStats(data);
     } catch (error) {
       console.error("Failed to fetch stats:", error);
     } finally {

@@ -28,7 +28,7 @@ export default function Users() {
       const res = await axios.get("/admin/users", {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setUsers(res.data);
+      setUsers(res.data || []);
     } catch {
       toast.error("Failed to load users ❌");
     } finally {
@@ -84,6 +84,7 @@ export default function Users() {
                   onChange={(e) =>
                     changeRole(u.id, e.target.value)
                   }
+                  aria-label={`Change role for ${u.fullName}`}
                 >
                   <option value="user">User</option>
                   <option value="admin">Admin</option>

@@ -139,7 +139,7 @@ export default function Templates() {
     try {
       setLoading(true);
       const res = await axios.get("/templates");
-      setTemplates(res.data);
+      setTemplates(res.data || []);
     } catch {
       toast.error("Failed to load templates ❌");
     } finally {
@@ -356,6 +356,7 @@ export default function Templates() {
                 header: { ...form.styles.header, fontSize: e.target.value }
               }
             })}
+            aria-label="Header Font Size"
           >
             <option value="14px">14px</option>
             <option value="16px">16px</option>
@@ -372,6 +373,7 @@ export default function Templates() {
                 header: { ...form.styles.header, fontFamily: e.target.value }
               }
             })}
+            aria-label="Header Font Family"
           >
             <option value="Arial, sans-serif">Arial</option>
             <option value="Helvetica, sans-serif">Helvetica</option>
@@ -400,6 +402,7 @@ export default function Templates() {
                 header: { ...form.styles.header, borderWidth: e.target.value }
               }
             })}
+            aria-label="Header Border Width"
           >
             <option value="0px">No Border</option>
             <option value="1px">1px</option>
@@ -443,6 +446,7 @@ export default function Templates() {
                 body: { ...form.styles.body, fontSize: e.target.value }
               }
             })}
+            aria-label="Body Font Size"
           >
             <option value="12px">12px</option>
             <option value="14px">14px</option>
@@ -458,6 +462,7 @@ export default function Templates() {
                 body: { ...form.styles.body, fontFamily: e.target.value }
               }
             })}
+            aria-label="Body Font Family"
           >
             <option value="Arial, sans-serif">Arial</option>
             <option value="Helvetica, sans-serif">Helvetica</option>
@@ -502,6 +507,7 @@ export default function Templates() {
                 otp: { ...form.styles.otp, fontSize: e.target.value }
               }
             })}
+            aria-label="OTP Font Size"
           >
             <option value="20px">20px</option>
             <option value="24px">24px</option>
@@ -518,6 +524,7 @@ export default function Templates() {
                 otp: { ...form.styles.otp, padding: e.target.value }
               }
             })}
+            aria-label="OTP Padding"
           >
             <option value="8px 12px">8px 12px</option>
             <option value="12px 16px">12px 16px</option>
@@ -545,6 +552,7 @@ export default function Templates() {
                 otp: { ...form.styles.otp, borderWidth: e.target.value }
               }
             })}
+            aria-label="OTP Border Width"
           >
             <option value="0px">No Border</option>
             <option value="1px">1px</option>
@@ -588,6 +596,7 @@ export default function Templates() {
                 footer: { ...form.styles.footer, fontSize: e.target.value }
               }
             })}
+            aria-label="Footer Font Size"
           >
             <option value="10px">10px</option>
             <option value="12px">12px</option>
@@ -603,6 +612,7 @@ export default function Templates() {
                 footer: { ...form.styles.footer, fontFamily: e.target.value }
               }
             })}
+            aria-label="Footer Font Family"
           >
             <option value="Arial, sans-serif">Arial</option>
             <option value="Helvetica, sans-serif">Helvetica</option>

@@ -24,7 +24,7 @@ export default function Logs() {
   const fetchLogs = async () => {
     try {
       const res = await axios.get("/logs");
-      setLogs(res.data);
+      setLogs(res.data || []);
     } catch {
       toast.error("Failed to retrieve logs ❌");
     } finally {

@@ -29,7 +29,7 @@ export default function AdminSMTP() {
     try {
       const axios = (await import("../../api/axios")).default;
       const { data } = await axios.get<SMTPConfig[]>("/admin/smtp");
-      setConfigs(data);
+      setConfigs(data || []);
     } catch (error) {
       console.error('Failed to fetch SMTP configs:', error);
     } finally {

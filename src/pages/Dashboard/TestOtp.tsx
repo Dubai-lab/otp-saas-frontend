@@ -38,10 +38,11 @@ export default function TestOtp() {
         axios.get("/templates"),
       ]);
 
-      setApiKeys(keyRes.data);
-      setTemplates(templateRes.data);
-    } catch {
-      toast.error("Failed to load test settings ❌");
+      setApiKeys(keyRes.data || []);
+      setTemplates(templateRes.data || []);
+    } catch (err: unknown) {
+      const error = err as { response?: { data?: { message?: string } } };
+      toast.error(error.response?.data?.message || "Failed to load test settings ❌");
     } finally {
       setLoading(false);
     }

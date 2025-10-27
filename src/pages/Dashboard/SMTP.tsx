@@ -32,9 +32,13 @@ export default function SMTP() {
     try {
       setLoading(true);
       const res = await axios.get("/smtp");
-      setConfigs(res.data);
-    } catch {
+
+      // ✅ Ensure we ALWAYS store an array (prevents map errors)
+      setConfigs(Array.isArray(res.data) ? res.data : []);
+    } catch (err) {
+      console.error(err);
       toast.error("Failed to load configs ❌");
+      setConfigs([]); // ✅ fallback
     } finally {
       setLoading(false);
     }
@@ -49,10 +53,13 @@ export default function SMTP() {
         ...form,
         port: Number(form.port),
       });
+
       toast.success("SMTP Config Saved ✅");
       setForm({ name: "", host: "", port: "", email: "", password: "" });
+
       void fetchConfigs();
     } catch (err: unknown) {
+      console.error(err);
       const error = err as { response?: { data?: { message?: string } } };
       toast.error(error.response?.data?.message || "Save failed ❌");
     } finally {
@@ -67,7 +74,8 @@ export default function SMTP() {
       await axios.delete(`/smtp/${id}`);
       toast.success("Deleted ✅");
       void fetchConfigs();
-    } catch {
+    } catch (err) {
+      console.error(err);
       toast.error("Delete failed ❌");
     }
   };
@@ -89,7 +97,7 @@ export default function SMTP() {
 
         <input
           type="text"
-          placeholder="SMTP Host (smtp.gmail.com)"
+          placeholder="SMTP Host"
           value={form.host}
           onChange={(e) => setForm({ ...form, host: e.target.value })}
           required
@@ -119,21 +127,27 @@ export default function SMTP() {
           required
         />
 
-        <button type="submit">Save Config</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Saving..." : "Save Config"}
+        </button>
       </form>
 
       <h3>Saved Configurations</h3>
 
       <div className="smtp-list">
-        {configs.map((c) => (
-          <div key={c.id} className="smtp-item">
-            <p><strong>{c.name}</strong></p>
-            <small>{c.email} | {c.host}:{c.port}</small>
-            <button className="delete" onClick={() => void handleDelete(c.id)}>
-              Delete
-            </button>
-          </div>
-        ))}
+        {configs.length === 0 ? (
+          <p>No SMTP configurations saved yet.</p>
+        ) : (
+          configs.map((c) => (
+            <div key={c.id} className="smtp-item">
+              <p><strong>{c.name}</strong></p>
+              <small>{c.email} | {c.host}:{c.port}</small>
+              <button className="delete" onClick={() => void handleDelete(c.id)}>
+                Delete
+              </button>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

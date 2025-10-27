@@ -24,9 +24,12 @@ export default function Logs() {
   const fetchLogs = async () => {
     try {
       const res = await axios.get("/logs");
-      setLogs(res.data);
-    } catch {
-      toast.error("Failed to retrieve logs ❌");
+
+      const data = Array.isArray(res.data) ? res.data : [];
+      setLogs(data);
+    } catch (err: unknown) {
+      const error = err as { response?: { data?: { message?: string } } };
+      toast.error(error.response?.data?.message || "Failed to retrieve logs ❌");
     } finally {
       setLoading(false);
     }
@@ -39,33 +42,37 @@ export default function Logs() {
       <h2>Email Logs</h2>
 
       <div className="logs-table-wrap">
-        <table className="logs-table">
-          <thead>
-            <tr>
-              <th>Email</th>
-              <th>OTP</th>
-              <th>Status</th>
-              <th>Error</th>
-              <th>Sent At</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {logs.map((log) => (
-              <tr key={log.id}>
-                <td>{log.recipient}</td>
-                <td>{log.otp}</td>
-                <td>
-                  <span className={`status ${log.status}`}>
-                    {log.status.toUpperCase()}
-                  </span>
-                </td>
-                <td>{log.error || "-"}</td>
-                <td>{new Date(log.createdAt).toLocaleString()}</td>
+        {logs.length === 0 ? (
+          <p className="no-data">No logs found 📭</p>
+        ) : (
+          <table className="logs-table">
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>OTP</th>
+                <th>Status</th>
+                <th>Error</th>
+                <th>Sent At</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+
+            <tbody>
+              {logs.map((log) => (
+                <tr key={log.id}>
+                  <td>{log.recipient}</td>
+                  <td>{log.otp}</td>
+                  <td>
+                    <span className={`status ${log.status}`}>
+                      {log.status.toUpperCase()}
+                    </span>
+                  </td>
+                  <td>{log.error || "-"}</td>
+                  <td>{new Date(log.createdAt).toLocaleString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );

@@ -18,11 +18,13 @@ export default function TestOtp() {
   const [loading, setLoading] = useState(false);
   const [apikeys, setApiKeys] = useState<ApiKey[]>([]);
   const [templates, setTemplates] = useState<Template[]>([]);
+
   const [form, setForm] = useState({
     apiKeyId: "",
     recipient: "",
     templateName: "",
   });
+
   const [otpToVerify, setOtpToVerify] = useState("");
   const [sentOtp, setSentOtp] = useState("");
 
@@ -38,11 +40,13 @@ export default function TestOtp() {
         axios.get("/templates"),
       ]);
 
-      setApiKeys(keyRes.data || []);
-      setTemplates(templateRes.data || []);
+      setApiKeys(Array.isArray(keyRes.data) ? keyRes.data : []);
+      setTemplates(Array.isArray(templateRes.data) ? templateRes.data : []);
     } catch (err: unknown) {
       const error = err as { response?: { data?: { message?: string } } };
       toast.error(error.response?.data?.message || "Failed to load test settings ❌");
+      setApiKeys([]);
+      setTemplates([]);
     } finally {
       setLoading(false);
     }
@@ -60,9 +64,6 @@ export default function TestOtp() {
 
       if (res.data?.otp) {
         setSentOtp(res.data.otp);
-        toast(`Debug OTP: ${res.data.otp}`, {
-          icon: "🔢",
-        });
       }
     } catch (err: unknown) {
       const error = err as { response?: { data?: { message?: string } } };
@@ -111,11 +112,15 @@ export default function TestOtp() {
           onChange={(e) => setForm({ ...form, apiKeyId: e.target.value })}
         >
           <option value="">Select API Key</option>
-          {apikeys.map((k) => (
-            <option key={k.id} value={k.id}>
-              {k.name || "API Key"}
-            </option>
-          ))}
+          {apikeys.length === 0 ? (
+            <option disabled>No API Keys Found</option>
+          ) : (
+            apikeys.map((k) => (
+              <option key={k.id} value={k.id}>
+                {k.name || "API Key"}
+              </option>
+            ))
+          )}
         </select>
 
         <select
@@ -123,11 +128,15 @@ export default function TestOtp() {
           onChange={(e) => setForm({ ...form, templateName: e.target.value })}
         >
           <option value="">Select Template</option>
-          {templates.map((t) => (
-            <option key={t.id} value={t.name}>
-              {t.name}
-            </option>
-          ))}
+          {templates.length === 0 ? (
+            <option disabled>No Templates Found</option>
+          ) : (
+            templates.map((t) => (
+              <option key={t.id} value={t.name}>
+                {t.name}
+              </option>
+            ))
+          )}
         </select>
 
         <input

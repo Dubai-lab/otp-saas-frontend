@@ -37,8 +37,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const res = await axios.get("/users/me");
 
       setUser(res.data);
-    } catch (error) {
-      console.error("Failed to refresh user:", error);
+    } catch {
       localStorage.removeItem("token");
       setUser(null);
     }
